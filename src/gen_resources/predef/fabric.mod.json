@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "redstonetweaks",
+  "version": "${version}",
+
+  "name": "Redstone Tweaks",
+  "description": "Some simple but useful redstone additions.",
+  "authors": [ "swordglowsblue" ],
+
+  "contact": {
+    "homepage": "https://minecraft.curseforge.com/projects/redstone-tweaks",
+    "sources": "https://github.com/swordglowsblue/redstone-tweaks"
+  },
+
+  "license": "MIT",
+  "icon": "assets/redstonetweaks/icon.png",
+
+  "entrypoints": {
+    "main": [ "com.swordglowsblue.redstonetweaks.RedstoneTweaks" ],
+    "client": [ "com.swordglowsblue.redstonetweaks.RedstoneTweaksClient" ]
+  },
+
+  "depends": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*"
+  }
+}
