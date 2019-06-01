@@ -1,6 +1,5 @@
 package com.swordglowsblue.redstonetweaks.block.torch_levers;
 
-import com.swordglowsblue.redstonetweaks.RedstoneTweaks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
