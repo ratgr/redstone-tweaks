@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "redstonetweaks:dyed_redstone",
+  "pattern": [
+    "rrr",
+    "rdr",
+    "rrr"
+  ],
+  "key": {
+    "r": { "tag": "redstonetweaks:redstone" },
+    "d": { "item": "minecraft:black_dye" }
+  },
+  "result": {
+    "item": "redstonetweaks:black_redstone",
+    "count": 8
+  }
+}

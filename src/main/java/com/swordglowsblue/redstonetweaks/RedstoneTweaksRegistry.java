@@ -12,13 +12,17 @@ import com.swordglowsblue.redstonetweaks.block.torch_levers.RedstoneTorchLeverBl
 import com.swordglowsblue.redstonetweaks.block.torch_levers.TorchLeverBlock;
 import com.swordglowsblue.redstonetweaks.block.torch_levers.WallRedstoneTorchLeverBlock;
 import com.swordglowsblue.redstonetweaks.block.torch_levers.WallTorchLeverBlock;
+import com.swordglowsblue.redstonetweaks.block.wire.DyedWireBlock;
+import com.swordglowsblue.redstonetweaks.block.wire.IWire;
 import com.swordglowsblue.redstonetweaks.item.FlintAndRedstoneItem;
+import com.swordglowsblue.redstonetweaks.util.ColorUtils;
 import com.swordglowsblue.redstonetweaks.util.EnumVariantRegistry;
 import com.swordglowsblue.redstonetweaks.util.RegistryUtils;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.Item;
@@ -28,6 +32,7 @@ import net.minecraft.item.WallStandingBlockItem;
 import net.minecraft.stat.StatFormatter;
 import net.minecraft.stat.Stats;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -53,6 +58,7 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
     public final WallStandingBlockItem torchLeverItem;
     public final WallStandingBlockItem redstoneTorchLeverItem;
 
+    public final EnumVariantRegistry<DyeColor> dyedWire;
     public final EnumVariantRegistry<RedstoneCapacitorBlock.Tier> redstoneCapacitors;
 
     public final Identifier hopperPipeContainer = new Identifier("redstonetweaks:hopper_pipe");
@@ -80,6 +86,12 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
         redstoneTorchLeverItem = registerItem("redstone_torch_lever",
             new WallStandingBlockItem(redstoneTorchLever, redstoneWallTorchLever, new Item.Settings()));
 
+        dyedWire = new EnumVariantRegistry.Builder<>(DyeColor.class, "%s_redstone_wire", "%s_redstone")
+            .keys(EnumSet.complementOf(EnumSet.of(DyeColor.RED)))
+            .blocks(DyedWireBlock::new).blockItems()
+            .blockColor((color, state) -> ((IWire)state.getBlock()).getWireColor(state).getRGB())
+            .itemColor(ColorUtils::rgbIntFromDye)
+            .registerAll();
         redstoneCapacitors = new EnumVariantRegistry.Builder<>(RedstoneCapacitorBlock.Tier.class, "%s_redstone_capacitor")
             .blocks(RedstoneCapacitorBlock::new).blockItems()
             .blockColor((tier, state) -> ColorUtils.getPowerBrightnessMask(state.get(Properties.POWER)).getRGB())
@@ -98,6 +110,7 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
                 items.add(flintAndRedstone);
                 items.add(torchLeverItem);
                 items.add(redstoneTorchLeverItem);
+                items.addAll(dyedWire.getItems().values());
             }))
             .build();
 

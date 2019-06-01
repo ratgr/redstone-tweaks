@@ -1,6 +1,16 @@
 const gen = require('./gen')
 const def = require('./def')
 
+function genDyedWireRecipes() {
+  gen.ensureDir(gen.data, 'recipes/dyed_redstone')
+  for(let color of def.dyeColors) {
+    gen.write(gen.data, `recipes/dyed_redstone/${color}.json`,
+      gen.template('recipes/dyed_wire')
+        .replace(/%color/g, color)
+        .replace(/%output/g, color === 'red' ? 'minecraft:redstone' : `redstonetweaks:${color}_redstone`))
+  }
+}
+
 function genCapacitorRecipes() {
   gen.ensureDir(gen.data, 'recipes/redstone_capacitor')
   for(let tier of def.capacitorTiers) {
@@ -31,6 +41,7 @@ function genAnalogRecipes() {
 }
 
 module.exports = [
+  genDyedWireRecipes,
   genCapacitorRecipes,
   genTorchLeverRecipes,
   genAnalogRecipes

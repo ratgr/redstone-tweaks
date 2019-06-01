@@ -26,6 +26,14 @@ function genCapacitorBlockstates() {
   }
 }
 
+function genDyedWireBlockstates() {
+  gen.ensureDir(gen.assets, 'blockstates')
+  for(let color of def.dyeColors) {
+    gen.write(gen.assets, `blockstates/${color}_redstone_wire.json`,
+      gen.template('blockstates/dyed_redstone_wire'))
+  }
+}
+
 function genTorchLeverBlockstates() {
   gen.ensureDir(gen.assets, 'blockstates')
   for(let type of def.torchTypes) {
@@ -45,5 +53,6 @@ module.exports = [
   genSimpleBlockstates,
   genAnalogBlockstates,
   genCapacitorBlockstates,
+  genDyedWireBlockstates,
   genTorchLeverBlockstates
 ]
