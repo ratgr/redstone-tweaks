@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "com.swordglowsblue.redstonetweaks.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [ "MixinRedstoneWireBlock" ],
+  "injectors": { "defaultRequire": 1 }
+}

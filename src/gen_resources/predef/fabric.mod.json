@@ -19,6 +19,7 @@
     "main": [ "com.swordglowsblue.redstonetweaks.RedstoneTweaks" ],
     "client": [ "com.swordglowsblue.redstonetweaks.RedstoneTweaksClient" ]
   },
+  "mixins": [ "redstonetweaks.mixins.json" ],
 
   "depends": {
     "fabricloader": ">=0.4.0",
