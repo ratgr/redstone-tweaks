@@ -42,6 +42,7 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
     public final RedstoneTorchLeverBlock redstoneTorchLever;
     public final WallRedstoneTorchLeverBlock redstoneWallTorchLever;
     public final HopperPipeBlock hopperPipe;
+    public final TranslocatorBlock translocator;
 
     public final FlintAndRedstoneItem flintAndRedstone;
     public final WallStandingBlockItem torchLeverItem;
