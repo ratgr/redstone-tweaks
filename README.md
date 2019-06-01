@@ -1,10 +1,6 @@
 # Redstone Tweaks
 Some simple but useful Redstone additions built on the [FabricMC mod loader](https://github.com/fabricmc).
 
-### TODO for 1.0.0
-- Go over the mod with a fine toothed comb before releasing
-- Compatibility with [Composable Automation](https://minecraft.curseforge.com/projects/composable-automation)'s Photodetector
-
 ### Long-term TODO
 - Redstone wire processing optimization (for either RT, vanilla, or both)
 - Sticky redstone (attachable to walls/ceilings)
