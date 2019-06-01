@@ -53,8 +53,8 @@ function genResources() {
   console.log("Success.")
 
   process.stdout.write("Copying predefined resources... ")
-  copyFolder('predef/assets', assets(''))
-  copyFolder('predef/data', data(''))
+  copyFolder('predef/assets', `${resourcesRoot}/assets`)
+  copyFolder('predef/data', `${resourcesRoot}/data`)
   console.log("Success.\n")
 
   for(let mname of [ 'models', 'blockstates', 'recipes', 'tags', 'loot_tables' ]) {
