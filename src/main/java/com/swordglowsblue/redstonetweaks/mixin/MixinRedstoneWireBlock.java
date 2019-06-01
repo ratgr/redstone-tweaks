@@ -38,8 +38,7 @@ public abstract class MixinRedstoneWireBlock implements IWire {
         }
     }
 
-    @Inject(method = "connectsTo(Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/Direction;)Z",
-            at = @At("HEAD"), cancellable = true)
+    @Inject(method = "connectsTo(Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/Direction;)Z", at = @At("HEAD"), cancellable = true)
     private static void shouldConnectTo(BlockState state, Direction dir, CallbackInfoReturnable<Boolean> cbi) {
         Direction direction = dir == null ? null : dir.getOpposite();
         if(state.getBlock() instanceof IWire)
@@ -48,8 +47,8 @@ public abstract class MixinRedstoneWireBlock implements IWire {
             cbi.setReturnValue(false);
     }
 
-    @Redirect(method = "updateLogic(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)Lnet/minecraft/block/BlockState;",
-              at = @At(value = "INVOKE", target = "getReceivedRedstonePower(Lnet/minecraft/util/math/BlockPos;)I", ordinal = 0))
+    @Redirect(method = "updateLogic", at = @At(value = "INVOKE",
+        target = "net.minecraft.world.World.getReceivedRedstonePower(Lnet/minecraft/util/math/BlockPos;)I", ordinal = 0))
     private int getReceivedRedstonePower(World world, BlockPos pos) {
         ArrayList<Direction> directions = new ArrayList<>();
         for(Direction direction : Direction.values()) {
