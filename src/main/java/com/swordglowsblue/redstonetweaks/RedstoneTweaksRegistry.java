@@ -1,6 +1,7 @@
 package com.swordglowsblue.redstonetweaks;
 
 import com.swordglowsblue.redstonetweaks.block.RedstoneSparkBlock;
+import com.swordglowsblue.redstonetweaks.block.TranslocatorBlock;
 import com.swordglowsblue.redstonetweaks.block.analog.AnalogRedstoneBlock;
 import com.swordglowsblue.redstonetweaks.block.analog.AnalogRedstoneLampBlock;
 import com.swordglowsblue.redstonetweaks.block.container.HopperPipeBlock;
@@ -55,6 +56,7 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
         redstoneTorchLever = registerLoneBlock("redstone_torch_lever", new RedstoneTorchLeverBlock());
         redstoneWallTorchLever = registerLoneBlock("redstone_wall_torch_lever", new WallRedstoneTorchLeverBlock(redstoneTorchLever));
         hopperPipe = registerBlock("hopper_pipe", new HopperPipeBlock());
+        translocator = registerBlock("translocator", new TranslocatorBlock());
 
         flintAndRedstone = registerItem("flint_and_redstone", new FlintAndRedstoneItem());
         torchLeverItem = registerItem("torch_lever",
@@ -68,6 +70,7 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
                 blocks.add(analogRedstoneBlock);
                 blocks.add(analogRedstoneLamp);
                 blocks.add(hopperPipe);
+                blocks.add(translocator);
 
                 items.add(flintAndRedstone);
                 items.add(torchLeverItem);

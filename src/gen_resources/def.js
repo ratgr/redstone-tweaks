@@ -6,6 +6,8 @@ module.exports = {
 }
 
 module.exports.simpleDropsSelf = [
+  'translocator',
+  'hopper_pipe',
   ...module.exports.analogTypes.map(t => 'analog_redstone_'+t),
   ...module.exports.torchTypes.map(t => t+'torch_lever'),
 ]

@@ -1,0 +1,7 @@
+{
+  "parent": "block/observer",
+  "textures": {
+    "bottom": "redstonetweaks:block/translocator_back",
+    "front": "redstonetweaks:block/translocator_front"
+  }
+}
