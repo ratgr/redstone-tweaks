@@ -1,6 +1,15 @@
 const gen = require('./gen')
 const def = require('./def')
 
+function genSimpleItemModels() {
+  gen.ensureDir(gen.assets, `models/item`)
+  for(let item of def.simpleItems) {
+    gen.write(gen.assets, `models/item/${item}.json`,
+      { "parent": "item/generated",
+        "textures": { "layer0": def.simpleTextures[item] || `redstonetweaks:item/${item}` }})
+  }
+}
+
 function genBlockCoreModels() {
   gen.ensureDir(gen.assets, `models/block/block_core`)
   for(let size = 0; size < 15; size++) {
