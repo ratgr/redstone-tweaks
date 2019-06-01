@@ -50,8 +50,6 @@ public abstract class AbstractWireBlock extends Block implements IWire {
     private static final EnumProperty<WireConnection>[] DIR_PROPS = new EnumProperty[] {CONN_0, CONN_90, CONN_180, CONN_270};
     public static final IntegerProperty POWER = RedstoneWireBlock.POWER;
 
-    private boolean wiresGivePower;
-
     public AbstractWireBlock(Block.Settings settings) {
         super(settings);
         this.setDefaultState(getStateFactory().getDefaultState()
@@ -76,7 +74,6 @@ public abstract class AbstractWireBlock extends Block implements IWire {
     }
 
     public final IntegerProperty getPowerProperty() { return POWER; }
-    public final void setWiresGivePower(boolean wgp) { this.wiresGivePower = wgp; }
 
     // === BLOCK STATE === //
 
@@ -120,13 +117,13 @@ public abstract class AbstractWireBlock extends Block implements IWire {
         return Block.isSolidFullSquare(stateBelow, world, pos.down(), attachedFace.getOpposite()) || stateBelow.getBlock() == Blocks.HOPPER;
     }
 
-    public boolean emitsRedstonePower(BlockState state) { return this.wiresGivePower; }
+    public boolean emitsRedstonePower(BlockState state) { return IWire.getWiresGivePower(); }
 
     public int getStrongRedstonePower(BlockState state, BlockView view, BlockPos pos, Direction dir) {
         return state.getWeakRedstonePower(view, pos, dir); }
     public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction dir) {
         Direction attachedFace = getAttachedFace(state);
-        if(!this.wiresGivePower) return 0;
+        if(!IWire.getWiresGivePower()) return 0;
         int power = state.get(POWER);
         if(power == 0) return 0;
         if(dir == attachedFace.getOpposite()) return power;

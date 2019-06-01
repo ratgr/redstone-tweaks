@@ -26,7 +26,9 @@ public abstract class MixinRedstoneWireBlock implements IWire {
 
     public Direction getAttachedFace(BlockState state) { return Direction.DOWN; }
     public IntegerProperty getPowerProperty() { return RedstoneWireBlock.POWER; }
-    public void setWiresGivePower(boolean wgp) { this.wiresGivePower = wgp; }
+
+    @SuppressWarnings("deprecation") public boolean rt_internal_get_wgp() { return this.wiresGivePower; }
+    @SuppressWarnings("deprecation") public void rt_internal_set_wgp(boolean wgp) { this.wiresGivePower = wgp; }
 
     public EnumProperty<WireConnection> getConnectionProperty(Direction attachedFace, Direction of) {
         switch(of) {

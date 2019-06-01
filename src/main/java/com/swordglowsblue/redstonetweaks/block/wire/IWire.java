@@ -32,8 +32,6 @@ public interface IWire {
     EnumProperty<WireConnection> getConnectionProperty(Direction attachedFace, Direction of);
     /** Get the blockstate property that stores this wire's power level. */
     IntegerProperty getPowerProperty();
-    /** Set whether wires should give power. Generally <code>this.wiresGivePower = wgp</code>. */
-    void setWiresGivePower(boolean wgp);
 
     boolean emitsRedstonePower(BlockState state);
 
@@ -112,6 +110,16 @@ public interface IWire {
         if(other.getBlock() instanceof IWire && !shouldConnect(state, other, null)) return false;
         return true;
     }
+
+    /** Check whether redstone wire should give power to redstone wire. */
+    static boolean getWiresGivePower() { return ((IWire)Blocks.REDSTONE_WIRE).rt_internal_get_wgp(); }
+    /** Set whether redstone wire should give power to redstone wire. */
+    static void setWiresGivePower(boolean wgp) { ((IWire)Blocks.REDSTONE_WIRE).rt_internal_set_wgp(wgp); }
+
+    /** Hook for {@link RedstoneWireBlock#wiresGivePower}. Should only be implemented/called on {@link Blocks#REDSTONE_WIRE}. */
+    @Deprecated default boolean rt_internal_get_wgp() { return false; }
+    /** Hook for {@link RedstoneWireBlock#wiresGivePower}. Should only be implemented/called on {@link Blocks#REDSTONE_WIRE}. */
+    @Deprecated default void rt_internal_set_wgp(boolean wgp) {}
 
     /** Check whether the given blockstates should connect to each other.
      *  DO NOT OVERRIDE THIS VERSION! Override {@link IWire#shouldConnect(BlockState, BlockState, Direction, boolean)} instead. */
@@ -194,9 +202,11 @@ public interface IWire {
                 }
             }
 
-            if(receivableDirections.contains(attachedFace.getOpposite()))
-                if(shouldConnect(state, world.getBlockState(pos.offset(attachedFace.getOpposite())), attachedFace.getOpposite()))
+            if(receivableDirections.contains(attachedFace.getOpposite())) {
+                BlockState otherState = world.getBlockState(pos.offset(attachedFace.getOpposite()));
+                if(otherState instanceof IWire && shouldConnect(state, otherState, attachedFace.getOpposite()))
                     wirePower = this.increasePower(wirePower, world.getBlockState(pos.offset(attachedFace.getOpposite())));
+            }
         }
 
         int finalPower = wirePower - 1;
