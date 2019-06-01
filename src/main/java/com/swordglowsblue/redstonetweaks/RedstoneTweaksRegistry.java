@@ -30,9 +30,16 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
     public final AnalogRedstoneBlock analogRedstoneBlock;
     public final AnalogRedstoneLampBlock analogRedstoneLamp;
     public final RedstoneSparkBlock redstoneSpark;
+    public final TorchLeverBlock torchLever;
+    public final WallTorchLeverBlock wallTorchLever;
+    public final RedstoneTorchLeverBlock redstoneTorchLever;
+    public final WallRedstoneTorchLeverBlock redstoneWallTorchLever;
     public final HopperPipeBlock hopperPipe;
 
     public final FlintAndRedstoneItem flintAndRedstone;
+    public final WallStandingBlockItem torchLeverItem;
+    public final WallStandingBlockItem redstoneTorchLeverItem;
+
     public final Identifier hopperPipeContainer = new Identifier("redstonetweaks:hopper_pipe");
     public final Identifier statInspectHopperPipe = new Identifier("redstonetweaks:inspect_hopper_pipe");
 
