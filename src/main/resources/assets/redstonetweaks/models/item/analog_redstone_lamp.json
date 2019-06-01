@@ -1,7 +1,0 @@
-{
-  "parent": "redstonetweaks:item/core_block",
-  "textures": {
-    "case": "block/glass",
-    "core": "block/redstone_lamp_on"
-  }
-}

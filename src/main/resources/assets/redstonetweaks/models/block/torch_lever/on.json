@@ -1,6 +1,0 @@
-{
-  "parent": "redstonetweaks:block/torch_lever/template_on",
-  "textures": {
-    "torch": "block/torch"
-  }
-}

@@ -23,3 +23,8 @@ bin/
 # fabric
 
 run/
+
+# misc
+
+src/main/resources/assets/
+src/main/resources/data/

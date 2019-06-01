@@ -1,6 +1,0 @@
-{
-  "parent": "redstonetweaks:block/block_core/1",
-  "textures": {
-    "core": "block/coal_block"
-  }
-}

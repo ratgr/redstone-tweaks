@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "redstonetweaks:iron_redstone_capacitor",
-    "redstonetweaks:golden_redstone_capacitor",
-    "redstonetweaks:diamond_redstone_capacitor",
-    "redstonetweaks:emerald_redstone_capacitor"
-  ]
-}

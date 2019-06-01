@@ -1,6 +1,0 @@
-{
-  "parent": "redstonetweaks:block/block_core/4",
-  "textures": {
-    "core": "block/redstone_lamp_on"
-  }
-}

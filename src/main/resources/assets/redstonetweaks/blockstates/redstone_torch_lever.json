@@ -1,6 +1,0 @@
-{
-  "variants": {
-      "powered=false": { "model": "redstonetweaks:block/torch_lever/redstone_off" },
-      "powered=true": { "model": "block/redstone_torch" }
-  }
-}
