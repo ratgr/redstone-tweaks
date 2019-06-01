@@ -12,6 +12,7 @@ import com.swordglowsblue.redstonetweaks.block.torch_levers.RedstoneTorchLeverBl
 import com.swordglowsblue.redstonetweaks.block.torch_levers.TorchLeverBlock;
 import com.swordglowsblue.redstonetweaks.block.torch_levers.WallRedstoneTorchLeverBlock;
 import com.swordglowsblue.redstonetweaks.block.torch_levers.WallTorchLeverBlock;
+import com.swordglowsblue.redstonetweaks.block.wire.DyedRedstoneBlock;
 import com.swordglowsblue.redstonetweaks.block.wire.DyedWireBlock;
 import com.swordglowsblue.redstonetweaks.block.wire.IWire;
 import com.swordglowsblue.redstonetweaks.item.FlintAndRedstoneItem;
@@ -59,6 +60,7 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
     public final WallStandingBlockItem redstoneTorchLeverItem;
 
     public final EnumVariantRegistry<DyeColor> dyedWire;
+    public final EnumVariantRegistry<DyeColor> dyedRBlocks;
     public final EnumVariantRegistry<RedstoneCapacitorBlock.Tier> redstoneCapacitors;
 
     public final Identifier hopperPipeContainer = new Identifier("redstonetweaks:hopper_pipe");
@@ -92,6 +94,12 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
             .blockColor((color, state) -> ((IWire)state.getBlock()).getWireColor(state).getRGB())
             .itemColor(ColorUtils::rgbIntFromDye)
             .registerAll();
+        dyedRBlocks = new EnumVariantRegistry.Builder<>(DyeColor.class, "%s_redstone_block")
+            .keys(EnumSet.complementOf(EnumSet.of(DyeColor.RED)))
+            .blocks(DyedRedstoneBlock::new).blockItems()
+            .blockColor(ColorUtils::rgbIntFromDye)
+            .itemColor(ColorUtils::rgbIntFromDye)
+            .registerAll();
         redstoneCapacitors = new EnumVariantRegistry.Builder<>(RedstoneCapacitorBlock.Tier.class, "%s_redstone_capacitor")
             .blocks(RedstoneCapacitorBlock::new).blockItems()
             .blockColor((tier, state) -> ColorUtils.getPowerBrightnessMask(state.get(Properties.POWER)).getRGB())
@@ -111,6 +119,7 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
                 items.add(torchLeverItem);
                 items.add(redstoneTorchLeverItem);
                 items.addAll(dyedWire.getItems().values());
+                items.addAll(dyedRBlocks.getItems().values());
             }))
             .build();
 

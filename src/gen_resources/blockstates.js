@@ -34,6 +34,14 @@ function genDyedWireBlockstates() {
   }
 }
 
+function genDyedRBlockBlockstates() {
+  gen.ensureDir(gen.assets, 'blockstates')
+  for(let color of def.dyeColors) {
+    gen.write(gen.assets, `blockstates/${color}_redstone_block.json`,
+      { "variants": { "": { "model": "redstonetweaks:block/dyed_redstone_block" }}})
+  }
+}
+
 function genTorchLeverBlockstates() {
   gen.ensureDir(gen.assets, 'blockstates')
   for(let type of def.torchTypes) {
@@ -54,5 +62,6 @@ module.exports = [
   genAnalogBlockstates,
   genCapacitorBlockstates,
   genDyedWireBlockstates,
+  genDyedRBlockBlockstates,
   genTorchLeverBlockstates
 ]

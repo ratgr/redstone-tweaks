@@ -30,6 +30,10 @@ function genDyedRBlockTags() {
   gen.ensureDir(gen.data, 'tags/items')
 
   let tag = {replace: false, values: ['minecraft:redstone_block']}
+  for(let color of def.dyeColors) {
+    if(color === 'red') continue;
+    tag.values.push(`redstonetweaks:${color}_redstone_block`)
+  }
 
   gen.write(gen.data, 'tags/blocks/redstone_block.json', tag)
   gen.write(gen.data, 'tags/items/redstone_block.json', tag)

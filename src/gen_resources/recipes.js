@@ -11,6 +11,16 @@ function genDyedWireRecipes() {
   }
 }
 
+function genDyedRBlockRecipes() {
+  gen.ensureDir(gen.data, 'recipes/dyed_redstone_block')
+  for(let color of def.dyeColors) {
+    if(color === 'red') continue;
+    gen.write(gen.data, `recipes/dyed_redstone_block/${color}.json`,
+      gen.template('recipes/dyed_redstone_block')
+        .replace(/%color/g, color))
+  }
+}
+
 function genCapacitorRecipes() {
   gen.ensureDir(gen.data, 'recipes/redstone_capacitor')
   for(let tier of def.capacitorTiers) {
@@ -42,6 +52,7 @@ function genAnalogRecipes() {
 
 module.exports = [
   genDyedWireRecipes,
+  genDyedRBlockRecipes,
   genCapacitorRecipes,
   genTorchLeverRecipes,
   genAnalogRecipes

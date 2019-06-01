@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "redstonetweaks:dyed_redstone_block",
+  "pattern": [
+    "rrr",
+    "rrr",
+    "rrr"
+  ],
+  "key": {
+    "r": { "item": "redstonetweaks:blue_redstone" }
+  },
+  "result": {
+    "item": "redstonetweaks:blue_redstone_block"
+  }
+}

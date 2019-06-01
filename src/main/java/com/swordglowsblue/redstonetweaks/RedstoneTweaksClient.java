@@ -20,6 +20,7 @@ public class RedstoneTweaksClient implements ClientModInitializer {
         // === COLOR MAPPERS === //
 
         RedstoneTweaks.REGISTRY.dyedWire.registerColorProviders();
+        RedstoneTweaks.REGISTRY.dyedRBlocks.registerColorProviders();
         RedstoneTweaks.REGISTRY.redstoneCapacitors.registerColorProviders();
     }
 }

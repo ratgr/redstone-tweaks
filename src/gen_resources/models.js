@@ -76,6 +76,15 @@ function genDyedWireItemModels() {
   }
 }
 
+function genDyedRBlockItemModels() {
+  gen.ensureDir(gen.assets, `models/item`)
+  for(let color of def.dyeColors) {
+    if(color === 'red') continue;
+    gen.write(gen.assets, `models/item/${color}_redstone_block.json`,
+      { "parent": "redstonetweaks:block/dyed_redstone_block" })
+  }
+}
+
 function genTorchLeverItemModels() {
   gen.ensureDir(gen.assets, `models/item`)
   for(let type of def.torchTypes) {
@@ -92,5 +101,6 @@ module.exports = [
   genAnalogModels,
   genCapacitorModels,
   genDyedWireItemModels,
+  genDyedRBlockItemModels,
   genTorchLeverItemModels
 ]
