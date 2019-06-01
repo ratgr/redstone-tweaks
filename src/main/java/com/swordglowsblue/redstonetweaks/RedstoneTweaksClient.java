@@ -16,5 +16,9 @@ public class RedstoneTweaksClient implements ClientModInitializer {
             HopperPipeBlockEntity be = ((HopperPipeBlockEntity)pe.getEntityWorld().getBlockEntity(buf.readBlockPos()));
             return new HopperPipeScreen(be.createContainer(sid, pe.inventory), pe.inventory, be.getDisplayName());
         });
+
+        // === COLOR MAPPERS === //
+
+        RedstoneTweaks.REGISTRY.redstoneCapacitors.registerColorProviders();
     }
 }
