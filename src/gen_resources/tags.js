@@ -66,10 +66,48 @@ function genCapacitorTags() {
   gen.write(gen.data, 'tags/items/redstone_capacitor.json', tag)
 }
 
+function genCompAutoTags() {
+  gen.ensureDir(gen.compautoTags,'')
+
+  let red = {replace: false, values: [
+    'redstone_wire', 'redstone_block',
+    ...def.compautoRed.filter(c => c != 'red').map(c => `redstonetweaks:${c}_redstone_wire`),
+    ...def.compautoRed.filter(c => c != 'red').map(c => `redstonetweaks:${c}_redstone_block`)
+  ]}
+  let strongRed = {replace: false, values: [
+    ...def.compautoStrongRed.map(c => `redstonetweaks:${c}_redstone_wire`),
+    ...def.compautoStrongRed.map(c => `redstonetweaks:${c}_redstone_block`)
+  ]}
+  let green = {replace: false, values: [
+    ...def.compautoGreen.map(c => `redstonetweaks:${c}_redstone_wire`),
+    ...def.compautoGreen.map(c => `redstonetweaks:${c}_redstone_block`)
+  ]}
+  let strongGreen = {replace: false, values: [
+    ...def.compautoStrongGreen.map(c => `redstonetweaks:${c}_redstone_wire`),
+    ...def.compautoStrongGreen.map(c => `redstonetweaks:${c}_redstone_block`)
+  ]}
+  let blue = {replace: false, values: [
+    ...def.compautoBlue.map(c => `redstonetweaks:${c}_redstone_wire`),
+    ...def.compautoBlue.map(c => `redstonetweaks:${c}_redstone_block`)
+  ]}
+  let strongBlue = {replace: false, values: [
+    ...def.compautoStrongBlue.map(c => `redstonetweaks:${c}_redstone_wire`),
+    ...def.compautoStrongBlue.map(c => `redstonetweaks:${c}_redstone_block`)
+  ]}
+
+  gen.write(gen.compautoTags, 'red.json', red)
+  gen.write(gen.compautoTags, 'strong_red.json', strongRed)
+  gen.write(gen.compautoTags, 'green.json', green)
+  gen.write(gen.compautoTags, 'strong_green.json', strongGreen)
+  gen.write(gen.compautoTags, 'blue.json', blue)
+  gen.write(gen.compautoTags, 'strong_blue.json', strongBlue)
+}
+
 module.exports = [
   genDyedWireBlockTags,
   genDyedWireItemTags,
   genDyedRBlockTags,
   genTorchLeverTags,
-  genCapacitorTags
+  genCapacitorTags,
+  genCompAutoTags
 ]

@@ -5,6 +5,7 @@ const modid = 'redstonetweaks'
 
 const data = path => `${resourcesRoot}/data/${modid}/${path}`
 const assets = path => `${resourcesRoot}/assets/${modid}/${path}`
+const compautoTags = path => `${resourcesRoot}/data/composableautomation/tags/blocks/${path}`
 
 function write(type, path, data) {
   if(typeof data === 'object') data = JSON.stringify(data, null, 2)
@@ -48,8 +49,8 @@ function genResources() {
   console.log("Data directory: /data/"+modid)
 
   process.stdout.write("\nClearing old resources... ")
-  deleteFolderRecursive(assets(''))
-  deleteFolderRecursive(data(''))
+  deleteFolderRecursive(`${resourcesRoot}/assets`)
+  deleteFolderRecursive(`${resourcesRoot}/data`)
   console.log("Success.")
 
   process.stdout.write("Copying predefined resources... ")
@@ -74,6 +75,7 @@ module.exports = {
   write: write,
   data: data,
   assets: assets,
+  compautoTags: compautoTags,
   resourcesRoot: resourcesRoot,
   modid: modid
 }

@@ -30,3 +30,10 @@ module.exports.simpleDropsSelf = [
   ...module.exports.torchTypes.map(t => t+'torch_lever'),
   ...module.exports.dyeColors.filter(c => c !== 'red').map(c => c+'_redstone_block')
 ]
+
+module.exports.compautoStrongRed = ['white','orange','magenta','yellow','pink']
+module.exports.compautoStrongGreen = ['white','light_blue','yellow','lime']
+module.exports.compautoStrongBlue = ['white','magenta','light_blue','pink','purple']
+module.exports.compautoRed = [...module.exports.compautoStrongRed,'lime','light_gray','purple','brown','red']
+module.exports.compautoGreen = [...module.exports.compautoStrongGreen,'orange','pink','light_gray','cyan','green']
+module.exports.compautoBlue = [...module.exports.compautoStrongBlue,'light_gray','cyan','blue']
