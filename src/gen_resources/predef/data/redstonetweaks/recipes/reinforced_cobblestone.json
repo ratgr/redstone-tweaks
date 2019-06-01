@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ici",
+    "cic",
+    "ici"
+  ],
+  "key": {
+    "c": { "item": "minecraft:cobblestone" },
+    "i": { "item": "minecraft:iron_ingot" }
+  },
+  "result": {
+    "item": "redstonetweaks:reinforced_cobblestone",
+    "count": 4
+  }
+}

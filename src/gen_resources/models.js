@@ -1,12 +1,25 @@
 const gen = require('./gen')
 const def = require('./def')
 
+function genSimpleBlockModels() {
+  gen.ensureDir(gen.assets, `models/block`)
+  for(let block of def.simpleBlocks) {
+    gen.write(gen.assets, `models/block/${block}.json`,
+      { "parent": "block/cube_all",
+        "textures": { "all": def.simpleTextures[block] || `redstonetweaks:block/${block}` }})
+  }
+}
+
 function genSimpleItemModels() {
   gen.ensureDir(gen.assets, `models/item`)
   for(let item of def.simpleItems) {
     gen.write(gen.assets, `models/item/${item}.json`,
       { "parent": "item/generated",
         "textures": { "layer0": def.simpleTextures[item] || `redstonetweaks:item/${item}` }})
+  }
+  for(let item of def.simpleBlockItems) {
+    gen.write(gen.assets, `models/item/${item}.json`,
+      { "parent": `redstonetweaks:block/${item}` })
   }
 }
 
@@ -63,6 +76,8 @@ function genTorchLeverItemModels() {
 }
 
 module.exports = [
+  genSimpleBlockModels,
+  genSimpleItemModels,
   genBlockCoreModels,
   genAnalogModels,
   genCapacitorModels,

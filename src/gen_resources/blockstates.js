@@ -1,6 +1,15 @@
 const gen = require('./gen')
 const def = require('./def')
 
+function genSimpleBlockstates() {
+  gen.ensureDir(gen.assets, `blockstates`)
+
+  for(let block of def.simpleBlocks) {
+    gen.write(gen.assets, `blockstates/${block}.json`,
+      { "variants": { "": { "model": `redstonetweaks:block/${block}` }}})
+  }
+}
+
 function genAnalogBlockstates() {
   gen.ensureDir(gen.assets, 'blockstates')
   for(let type of def.analogTypes) {
@@ -33,6 +42,7 @@ function genTorchLeverBlockstates() {
 }
 
 module.exports = [
+  genSimpleBlockstates,
   genAnalogBlockstates,
   genCapacitorBlockstates,
   genTorchLeverBlockstates

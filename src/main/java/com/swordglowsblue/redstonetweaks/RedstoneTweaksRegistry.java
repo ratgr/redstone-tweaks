@@ -17,7 +17,10 @@ import com.swordglowsblue.redstonetweaks.util.EnumVariantRegistry;
 import com.swordglowsblue.redstonetweaks.util.RegistryUtils;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -31,6 +34,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.EnumSet;
 import java.util.function.Supplier;
 
+@SuppressWarnings("deprecation")
 public class RedstoneTweaksRegistry implements RegistryUtils {
     public final ItemGroup itemGroupRTweaks;
 
@@ -43,6 +47,7 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
     public final WallRedstoneTorchLeverBlock redstoneWallTorchLever;
     public final HopperPipeBlock hopperPipe;
     public final TranslocatorBlock translocator;
+    public final Block reinforcedCobblestone;
 
     public final FlintAndRedstoneItem flintAndRedstone;
     public final WallStandingBlockItem torchLeverItem;
@@ -66,6 +71,8 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
         redstoneWallTorchLever = registerLoneBlock("redstone_wall_torch_lever", new WallRedstoneTorchLeverBlock(redstoneTorchLever));
         hopperPipe = registerBlock("hopper_pipe", new HopperPipeBlock());
         translocator = registerBlock("translocator", new TranslocatorBlock());
+        reinforcedCobblestone = registerBlock("reinforced_cobblestone", new Block(Block.Settings.copy(Blocks.COBBLESTONE)) {
+            public PistonBehavior getPistonBehavior(BlockState state) { return PistonBehavior.BLOCK; } });
 
         flintAndRedstone = registerItem("flint_and_redstone", new FlintAndRedstoneItem());
         torchLeverItem = registerItem("torch_lever",
@@ -83,6 +90,7 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
             .appendItems(RegistryUtils.itemGroupContents((blocks, items) -> {
                 blocks.add(analogRedstoneBlock);
                 blocks.add(analogRedstoneLamp);
+                blocks.add(reinforcedCobblestone);
                 blocks.addAll(redstoneCapacitors.getBlocks().values());
                 blocks.add(hopperPipe);
                 blocks.add(translocator);
