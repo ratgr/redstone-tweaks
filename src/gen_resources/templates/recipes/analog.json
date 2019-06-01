@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "grg",
+    "gbg",
+    "gcg"
+  ],
+  "key": {
+    "g": { "item": "minecraft:glass_pane" },
+    "r": { "item": "minecraft:redstone" },
+    "b": { %coreing },
+    "c": { "item": "minecraft:comparator" }
+  },
+  "result": {
+    "item": "redstonetweaks:analog_redstone_%type"
+  }
+}
