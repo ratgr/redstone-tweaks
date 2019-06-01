@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "facing=down": { "model": "redstonetweaks:block/hopper_pipe/down" },
+    "facing=north": { "model": "redstonetweaks:block/hopper_pipe/side" },
+    "facing=south": { "model": "redstonetweaks:block/hopper_pipe/side", "y": 180 },
+    "facing=west": { "model": "redstonetweaks:block/hopper_pipe/side", "y": 270 },
+    "facing=east": { "model": "redstonetweaks:block/hopper_pipe/side", "y": 90 }
+  }
+}
