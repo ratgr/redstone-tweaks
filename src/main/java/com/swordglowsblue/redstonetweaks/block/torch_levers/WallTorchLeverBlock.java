@@ -5,7 +5,9 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
@@ -49,19 +51,23 @@ public class WallTorchLeverBlock extends WallTorchBlock {
         }
     }
 
+    public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity entity, ItemStack stack) {
+        this.updateNeighbors(state, world, pos);
+    }
+
     public int getWeakRedstonePower(BlockState state, BlockView bv, BlockPos pos, Direction dir) {
         return state.get(POWERED) ? 15 : 0;
     }
 
     public int getStrongRedstonePower(BlockState state, BlockView bv, BlockPos pos, Direction dir) {
-        return state.get(POWERED) && Direction.DOWN == dir ? 15 : 0;
+        return state.get(POWERED) && state.get(FACING) == dir ? 15 : 0;
     }
 
     public boolean emitsRedstonePower(BlockState state) { return state.get(POWERED); }
 
     private void updateNeighbors(BlockState state, World world, BlockPos pos) {
         world.updateNeighborsAlways(pos, this);
-        world.updateNeighborsAlways(pos.down(), this);
+        world.updateNeighborsAlways(pos.offset(state.get(FACING).getOpposite()), this);
     }
 
     protected void appendProperties(StateFactory.Builder<Block, BlockState> sf) {

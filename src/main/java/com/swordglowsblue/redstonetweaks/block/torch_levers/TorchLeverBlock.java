@@ -1,10 +1,14 @@
 package com.swordglowsblue.redstonetweaks.block.torch_levers;
 
+import com.swordglowsblue.redstonetweaks.block.container.HopperPipeBlockEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -46,6 +50,10 @@ public class TorchLeverBlock extends TorchBlock {
             if(state.get(POWERED)) this.updateNeighbors(state, world, pos);
             super.onBlockRemoved(state, world, pos, other, flag);
         }
+    }
+
+    public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity entity, ItemStack stack) {
+        this.updateNeighbors(state, world, pos);
     }
 
     public int getWeakRedstonePower(BlockState state, BlockView bv, BlockPos pos, Direction dir) {
