@@ -1,0 +1,6 @@
+{
+  "parent": "redstonetweaks:block/block_core/15",
+  "textures": {
+    "core": "block/redstone_block"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "parent": "block/block",
+  "elements": [
+    { "from": [ 1.5, 1.5, 1.5 ],
+      "to":  [ 14.5, 14.5, 14.5 ],
+      "faces": {
+        "down":  { "texture": "#core", "uv": [0,0,16,16] },
+        "up":    { "texture": "#core", "uv": [0,0,16,16] },
+        "north": { "texture": "#core", "uv": [0,0,16,16] },
+        "south": { "texture": "#core", "uv": [0,0,16,16] },
+        "west":  { "texture": "#core", "uv": [0,0,16,16] },
+        "east":  { "texture": "#core", "uv": [0,0,16,16] }
+      }
+    }
+  ]
+}
