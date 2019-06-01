@@ -30,6 +30,17 @@ function copyFolder(from, to) {
   })
 }
 
+function deleteFolderRecursive(path) {
+  if(fs.existsSync(path)) {
+    fs.readdirSync(path).forEach(file => {
+      var curPath = path + "/" + file
+      if(fs.lstatSync(curPath).isDirectory()) deleteFolderRecursive(curPath)
+      else fs.unlinkSync(curPath)
+    })
+    fs.rmdirSync(path)
+  }
+}
+
 function genResources() {
   console.log("Generating resources...")
   console.log("Resources root directory: "+resourcesRoot)
@@ -37,20 +48,13 @@ function genResources() {
   console.log("Data directory: /data/"+modid)
 
   process.stdout.write("\nClearing old resources... ")
-  ;(function deleteFolderRecursive(path) {
-    if(fs.existsSync(path)) {
-      fs.readdirSync(path).forEach(file => {
-        var curPath = path + "/" + file
-        if(fs.lstatSync(curPath).isDirectory()) deleteFolderRecursive(curPath)
-        else fs.unlinkSync(curPath)
-      })
-      fs.rmdirSync(path)
-    }
-  })(resourcesRoot)
+  deleteFolderRecursive(assets(''))
+  deleteFolderRecursive(data(''))
   console.log("Success.")
 
   process.stdout.write("Copying predefined resources... ")
-  copyFolder('predef', resourcesRoot)
+  copyFolder('predef/assets', assets(''))
+  copyFolder('predef/data', data(''))
   console.log("Success.\n")
 
   for(let mname of [ 'models', 'blockstates', 'recipes', 'tags', 'loot_tables' ]) {
