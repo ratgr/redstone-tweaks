@@ -1,0 +1,6 @@
+{
+  "parent": "redstonetweaks:block/torch_lever/template_wall_on",
+  "textures": {
+    "torch": "block/torch"
+  }
+}

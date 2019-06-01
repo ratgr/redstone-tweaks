@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "redstonetweaks:torch_lever",
+    "redstonetweaks:redstone_torch_lever",
+    "redstonetweaks:wall_torch_lever",
+    "redstonetweaks:redstone_wall_torch_lever"
+  ]
+}

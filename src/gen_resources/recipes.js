@@ -1,6 +1,15 @@
 const gen = require('./gen')
 const def = require('./def')
 
+function genTorchLeverRecipes() {
+  gen.ensureDir(gen.data, 'recipes/torch_lever')
+  for(let type of def.torchTypes) {
+    gen.write(gen.data, `recipes/torch_lever/${type.slice(0,-1) || 'normal'}.json`,
+      gen.template('recipes/torch_lever')
+        .replace(/%type/g, type))
+  }
+}
+
 function genAnalogRecipes() {
   gen.ensureDir(gen.data, 'recipes')
   for(let type of def.analogTypes) {
@@ -12,5 +21,6 @@ function genAnalogRecipes() {
 }
 
 module.exports = [
+  genTorchLeverRecipes,
   genAnalogRecipes
 ]

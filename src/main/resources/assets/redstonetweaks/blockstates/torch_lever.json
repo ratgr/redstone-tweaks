@@ -1,0 +1,6 @@
+{
+  "variants": {
+      "powered=false": { "model": "block/torch" },
+      "powered=true": { "model": "redstonetweaks:block/torch_lever/on" }
+  }
+}

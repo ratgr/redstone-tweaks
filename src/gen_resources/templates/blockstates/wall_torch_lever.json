@@ -1,0 +1,12 @@
+{
+  "variants": {
+      "powered=false,facing=east": { "model": "%off" },
+      "powered=false,facing=south": { "model": "%off", "y": 90 },
+      "powered=false,facing=west": { "model": "%off", "y": 180 },
+      "powered=false,facing=north": { "model": "%off", "y": 270 },
+      "powered=true,facing=east": { "model": "%on" },
+      "powered=true,facing=south": { "model": "%on", "y": 90 },
+      "powered=true,facing=west": { "model": "%on", "y": 180 },
+      "powered=true,facing=north": { "model": "%on", "y": 270 }
+  }
+}

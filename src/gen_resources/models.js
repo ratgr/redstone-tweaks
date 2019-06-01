@@ -41,7 +41,17 @@ function genAnalogModels() {
   gen.write(gen.assets, `models/item/analog_redstone_lamp.json`, item('block/redstone_lamp_on'))
 }
 
+function genTorchLeverItemModels() {
+  gen.ensureDir(gen.assets, `models/item`)
+  for(let type of def.torchTypes) {
+    gen.write(gen.assets, `models/item/${type}torch_lever.json`,
+      { "parent": "item/generated", 
+        "textures": { "layer0": `block/${type}torch` }})
+  }
+}
+
 module.exports = [
   genBlockCoreModels,
   genAnalogModels,
+  genTorchLeverItemModels
 ]

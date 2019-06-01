@@ -11,6 +11,21 @@ function genDyedRBlockTags() {
   gen.write(gen.data, 'tags/items/redstone_block.json', tag)
 }
 
+function genTorchLeverTags() {
+  gen.ensureDir(gen.data, 'tags/blocks')
+  gen.ensureDir(gen.data, 'tags/items')
+
+  let tag = {replace: false, values: []}
+  for(let type of def.torchTypes)
+    tag.values.push(`redstonetweaks:${type}torch_lever`)
+  gen.write(gen.data, 'tags/items/torch_lever.json', tag)
+
+  for(let type of def.torchTypes)
+    tag.values.push(`redstonetweaks:${type}wall_torch_lever`)
+  gen.write(gen.data, 'tags/blocks/torch_lever.json', tag)
+}
+
 module.exports = [
   genDyedRBlockTags,
+  genTorchLeverTags
 ]

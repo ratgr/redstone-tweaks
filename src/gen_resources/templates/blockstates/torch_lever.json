@@ -1,0 +1,6 @@
+{
+  "variants": {
+      "powered=false": { "model": "%off" },
+      "powered=true": { "model": "%on" }
+  }
+}

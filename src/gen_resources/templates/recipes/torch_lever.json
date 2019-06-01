@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:%typetorch" },
+    { "item": "minecraft:lever" }
+  ],
+  "result": {
+    "item": "redstonetweaks:%typetorch_lever"
+  }
+}
