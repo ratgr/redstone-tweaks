@@ -25,7 +25,21 @@ function genTorchLeverTags() {
   gen.write(gen.data, 'tags/blocks/torch_lever.json', tag)
 }
 
+function genCapacitorTags() {
+  gen.ensureDir(gen.data, 'tags/blocks')
+  gen.ensureDir(gen.data, 'tags/items')
+
+  let tag = {replace: false, values: []}
+  for(let tier of def.capacitorTiers) {
+    tag.values.push(`redstonetweaks:${tier}_redstone_capacitor`)
+  }
+
+  gen.write(gen.data, 'tags/blocks/redstone_capacitor.json', tag)
+  gen.write(gen.data, 'tags/items/redstone_capacitor.json', tag)
+}
+
 module.exports = [
   genDyedRBlockTags,
-  genTorchLeverTags
+  genTorchLeverTags,
+  genCapacitorTags
 ]

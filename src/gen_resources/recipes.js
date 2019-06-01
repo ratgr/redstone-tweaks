@@ -1,6 +1,16 @@
 const gen = require('./gen')
 const def = require('./def')
 
+function genCapacitorRecipes() {
+  gen.ensureDir(gen.data, 'recipes/redstone_capacitor')
+  for(let tier of def.capacitorTiers) {
+    gen.write(gen.data, `recipes/redstone_capacitor/${tier}.json`,
+      gen.template('recipes/capacitor')
+        .replace(/%tiering/g, def.capacitorIngredients[def.capacitorTiers.indexOf(tier)])
+        .replace(/%tier/g, tier))
+  }
+}
+
 function genTorchLeverRecipes() {
   gen.ensureDir(gen.data, 'recipes/torch_lever')
   for(let type of def.torchTypes) {
@@ -21,6 +31,7 @@ function genAnalogRecipes() {
 }
 
 module.exports = [
+  genCapacitorRecipes,
   genTorchLeverRecipes,
   genAnalogRecipes
 ]

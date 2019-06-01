@@ -1,0 +1,6 @@
+{
+  "parent": "redstonetweaks:block/redstone_capacitor/base",
+  "textures": {
+    "corners": "block/diamond_block"
+  }
+}

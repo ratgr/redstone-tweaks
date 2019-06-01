@@ -9,6 +9,14 @@ function genAnalogBlockstates() {
   }
 }
 
+function genCapacitorBlockstates() {
+  gen.ensureDir(gen.assets, 'blockstates')
+  for(let tier of def.capacitorTiers) {
+    gen.write(gen.assets, `blockstates/${tier}_redstone_capacitor.json`,
+      { "variants": { "": { "model": `redstonetweaks:block/redstone_capacitor/${tier}` } } })
+  }
+}
+
 function genTorchLeverBlockstates() {
   gen.ensureDir(gen.assets, 'blockstates')
   for(let type of def.torchTypes) {
@@ -26,5 +34,6 @@ function genTorchLeverBlockstates() {
 
 module.exports = [
   genAnalogBlockstates,
+  genCapacitorBlockstates,
   genTorchLeverBlockstates
 ]

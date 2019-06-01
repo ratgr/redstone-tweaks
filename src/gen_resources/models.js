@@ -41,6 +41,18 @@ function genAnalogModels() {
   gen.write(gen.assets, `models/item/analog_redstone_lamp.json`, item('block/redstone_lamp_on'))
 }
 
+function genCapacitorModels() {
+  gen.ensureDir(gen.assets, `models/block/redstone_capacitor`)
+  gen.ensureDir(gen.assets, `models/item`)
+  for(let tier of def.capacitorTiers) {
+    gen.write(gen.assets, `models/block/redstone_capacitor/${tier}.json`,
+      { "parent": "redstonetweaks:block/redstone_capacitor/base",
+        "textures": { "corners": `block/${tier.replace(/en$/, '')}_block` }})
+    gen.write(gen.assets, `models/item/${tier}_redstone_capacitor.json`,
+      { "parent": `redstonetweaks:block/redstone_capacitor/${tier}` })
+  }
+}
+
 function genTorchLeverItemModels() {
   gen.ensureDir(gen.assets, `models/item`)
   for(let type of def.torchTypes) {
@@ -53,5 +65,6 @@ function genTorchLeverItemModels() {
 module.exports = [
   genBlockCoreModels,
   genAnalogModels,
+  genCapacitorModels,
   genTorchLeverItemModels
 ]

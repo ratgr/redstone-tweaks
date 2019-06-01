@@ -4,6 +4,7 @@ import com.swordglowsblue.redstonetweaks.block.RedstoneSparkBlock;
 import com.swordglowsblue.redstonetweaks.block.TranslocatorBlock;
 import com.swordglowsblue.redstonetweaks.block.analog.AnalogRedstoneBlock;
 import com.swordglowsblue.redstonetweaks.block.analog.AnalogRedstoneLampBlock;
+import com.swordglowsblue.redstonetweaks.block.analog.RedstoneCapacitorBlock;
 import com.swordglowsblue.redstonetweaks.block.container.HopperPipeBlock;
 import com.swordglowsblue.redstonetweaks.block.container.HopperPipeBlockEntity;
 import com.swordglowsblue.redstonetweaks.block.container.HopperPipeContainer;
@@ -12,6 +13,7 @@ import com.swordglowsblue.redstonetweaks.block.torch_levers.TorchLeverBlock;
 import com.swordglowsblue.redstonetweaks.block.torch_levers.WallRedstoneTorchLeverBlock;
 import com.swordglowsblue.redstonetweaks.block.torch_levers.WallTorchLeverBlock;
 import com.swordglowsblue.redstonetweaks.item.FlintAndRedstoneItem;
+import com.swordglowsblue.redstonetweaks.util.EnumVariantRegistry;
 import com.swordglowsblue.redstonetweaks.util.RegistryUtils;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
@@ -22,6 +24,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.WallStandingBlockItem;
 import net.minecraft.stat.StatFormatter;
 import net.minecraft.stat.Stats;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -43,6 +46,8 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
     public final FlintAndRedstoneItem flintAndRedstone;
     public final WallStandingBlockItem torchLeverItem;
     public final WallStandingBlockItem redstoneTorchLeverItem;
+
+    public final EnumVariantRegistry<RedstoneCapacitorBlock.Tier> redstoneCapacitors;
 
     public final Identifier hopperPipeContainer = new Identifier("redstonetweaks:hopper_pipe");
     public final Identifier statInspectHopperPipe = new Identifier("redstonetweaks:inspect_hopper_pipe");
@@ -67,11 +72,17 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
         redstoneTorchLeverItem = registerItem("redstone_torch_lever",
             new WallStandingBlockItem(redstoneTorchLever, redstoneWallTorchLever, new Item.Settings()));
 
+        redstoneCapacitors = new EnumVariantRegistry.Builder<>(RedstoneCapacitorBlock.Tier.class, "%s_redstone_capacitor")
+            .blocks(RedstoneCapacitorBlock::new).blockItems()
+            .blockColor((tier, state) -> ColorUtils.getPowerBrightnessMask(state.get(Properties.POWER)).getRGB())
+            .registerAll();
+
         itemGroupRTweaks = FabricItemGroupBuilder.create(ID("main"))
             .icon(() -> new ItemStack(flintAndRedstone))
             .appendItems(RegistryUtils.itemGroupContents((blocks, items) -> {
                 blocks.add(analogRedstoneBlock);
                 blocks.add(analogRedstoneLamp);
+                blocks.addAll(redstoneCapacitors.getBlocks().values());
                 blocks.add(hopperPipe);
                 blocks.add(translocator);
 
