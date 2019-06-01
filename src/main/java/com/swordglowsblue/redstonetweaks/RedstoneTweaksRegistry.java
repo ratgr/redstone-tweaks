@@ -25,6 +25,9 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.util.EnumSet;
+import java.util.function.Supplier;
+
 public class RedstoneTweaksRegistry implements RegistryUtils {
     public final ItemGroup itemGroupRTweaks;
 
