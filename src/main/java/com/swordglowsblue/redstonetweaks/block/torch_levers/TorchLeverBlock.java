@@ -61,7 +61,7 @@ public class TorchLeverBlock extends TorchBlock {
     }
 
     public int getStrongRedstonePower(BlockState state, BlockView bv, BlockPos pos, Direction dir) {
-        return state.get(POWERED) && Direction.DOWN == dir ? 15 : 0;
+        return state.get(POWERED) && Direction.DOWN == dir.getOpposite() ? 15 : 0;
     }
 
     public boolean emitsRedstonePower(BlockState state) { return state.get(POWERED); }
