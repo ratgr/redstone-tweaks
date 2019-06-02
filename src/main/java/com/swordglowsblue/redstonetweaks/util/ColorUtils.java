@@ -23,6 +23,7 @@ public class ColorUtils {
     }
 
     public static Color getPowerBrightnessMask(int power) { return getPowerBrightnessMask(power, 15f); }
+    public static int getPowerBrightnessMaskInt(int power) { return getPowerBrightnessMask(power).getRGB(); }
     public static Color getPowerBrightnessMask(int power, float max) {
         float p = MathHelper.clamp(power <= 0 ? 0.3f : power / max * 0.6f + 0.4f, 0, 1);
         return new Color(p,p,p);
