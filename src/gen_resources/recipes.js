@@ -18,6 +18,9 @@ function genDyedRBlockRecipes() {
     gen.write(gen.data, `recipes/dyed_redstone_block/${color}.json`,
       gen.template('recipes/dyed_redstone_block')
         .replace(/%color/g, color))
+    gen.write(gen.data, `recipes/dyed_redstone/${color}_from_block.json`,
+      gen.template('recipes/dyed_wire_from_block')
+        .replace(/%color/g, color))
   }
 }
 

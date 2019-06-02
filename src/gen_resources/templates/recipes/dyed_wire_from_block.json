@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "redstonetweaks:dyed_redstone",
+  "ingredients": [
+    { "item": "redstonetweaks:%color_redstone_block" }
+  ],
+  "result": {
+    "item": "redstonetweaks:%color_redstone",
+    "count": 9
+  }
+}
