@@ -10,6 +10,7 @@ import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.property.AbstractProperty;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -240,6 +241,11 @@ public class EnumVariantRegistry<T extends Enum<T>> {
          *  Note that you will need to call {@link EnumVariantRegistry#registerColorProviders} on client initialization for this to work. */
         public B blockColor(Function<T, Integer> provider) {
             return blockColor((key, state) -> provider.apply(key)); }
+
+        /** Register a block color provider for this registry, based on the given blockstate property.
+         *  Note that you will need to call {@link EnumVariantRegistry#registerColorProviders} on client initialization for this to work. */
+        public <P extends Comparable<P>> B blockColor(AbstractProperty<P> property, Function<P, Integer> provider) {
+            return blockColor((key, state) -> provider.apply(state.get(property))); }
 
         /** Register a block color provider for this registry, based on the associated key and current {@link BlockState}.
          *  Note that you will need to call {@link EnumVariantRegistry#registerColorProviders} on client initialization for this to work. */

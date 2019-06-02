@@ -106,8 +106,8 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
             .registerAll();
         redstoneCapacitors = new EnumVariantRegistry.Builder<>(RedstoneCapacitorBlock.Tier.class, "%s_redstone_capacitor")
             .blocks(RedstoneCapacitorBlock::new).blockItems()
-            .blockColor((tier, state) -> ColorUtils.getPowerBrightnessMask(state.get(Properties.POWER)).getRGB())
-            .registerAll();
+            .blockColor(Properties.POWER, ColorUtils::getPowerBrightnessMaskInt)
+            .registerAll(); 
 
         itemGroupRTweaks = FabricItemGroupBuilder.create(ID("main"))
             .icon(() -> new ItemStack(flintAndRedstone))
