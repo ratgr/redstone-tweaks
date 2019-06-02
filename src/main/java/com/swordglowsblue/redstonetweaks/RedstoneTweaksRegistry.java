@@ -24,6 +24,8 @@ import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.Item;
@@ -35,6 +37,8 @@ import net.minecraft.stat.Stats;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPointer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 
 import java.util.EnumSet;
@@ -130,5 +134,21 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
         ContainerProviderRegistry.INSTANCE.registerFactory(hopperPipeContainer, (sid, id, pe, buf) ->
             new HopperPipeContainer(sid, pe.inventory,
                 ((HopperPipeBlockEntity)pe.getEntityWorld().getBlockEntity(buf.readBlockPos()))));
+
+        DispenserBlock.registerBehavior(flintAndRedstone, new FallibleItemDispenserBehavior() {
+            protected ItemStack dispenseStack(BlockPointer pnt, ItemStack stack) {
+                this.success = false;
+
+                BlockPos pos = pnt.getBlockPos().offset(pnt.getBlockState().get(DispenserBlock.FACING));
+                if(pnt.getWorld().getBlockState(pos).isAir()) {
+                    pnt.getWorld().setBlockState(pos, redstoneSpark.stateForDuration(8), 11);
+                    FlintAndRedstoneItem.spawnUsageParticles(pnt.getWorld(), pos);
+                    this.success = true;
+                }
+
+                if(this.success && stack.applyDamage(1, pnt.getWorld().getRandom(), null)) stack.setAmount(0);
+                return stack;
+            }
+        });
     }
 }

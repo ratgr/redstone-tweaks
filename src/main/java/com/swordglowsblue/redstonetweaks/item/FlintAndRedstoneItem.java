@@ -33,17 +33,20 @@ public class FlintAndRedstoneItem extends Item {
                 stack.applyDamage(1, player, pe -> pe.sendToolBreakStatus(ctx.getHand()));
             }
 
-            double x = posToPlace.getX() + 0.5D + (world.getRandom().nextFloat() - 0.5D) * 0.2f;
-            double y = posToPlace.getY() + 0.5D + (world.getRandom().nextFloat() - 0.5D) * 0.2f;
-            double z = posToPlace.getZ() + 0.5D + (world.getRandom().nextFloat() - 0.5D) * 0.2f;
-            float red = 0.6F + 0.4F;
-            float green = Math.max(0.0F, 0.7F - 0.5F);
-            float blue = Math.max(0.0F, 0.6F - 0.7F);
-            world.addParticle(new DustParticleEffect(red, green, blue, 1.0F), x, y, z, 0.0D, 0.0D, 0.0D);
-
+            spawnUsageParticles(world, posToPlace);
             return ActionResult.SUCCESS;
         } else {
             return ActionResult.FAIL;
         }
+    }
+
+    public static void spawnUsageParticles(World world, BlockPos pos) {
+        double x = pos.getX() + 0.5D + (world.getRandom().nextFloat() - 0.5D) * 0.2f;
+        double y = pos.getY() + 0.5D + (world.getRandom().nextFloat() - 0.5D) * 0.2f;
+        double z = pos.getZ() + 0.5D + (world.getRandom().nextFloat() - 0.5D) * 0.2f;
+        float red = 0.6F + 0.4F;
+        float green = Math.max(0.0F, 0.7F - 0.5F);
+        float blue = Math.max(0.0F, 0.6F - 0.7F);
+        world.addParticle(new DustParticleEffect(red, green, blue, 1.0F), x, y, z, 0.0D, 0.0D, 0.0D);
     }
 }
