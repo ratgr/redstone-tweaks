@@ -42,6 +42,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 
 import java.util.EnumSet;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
@@ -72,6 +73,8 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
 
     private BlockEntityType<HopperPipeBlockEntity> hopperPipeBEType;
     public final Supplier<HopperPipeBlockEntity> createHopperPipeEntity = () -> new HopperPipeBlockEntity(hopperPipeBEType);
+
+    public static Consumer<RedstoneTweaksRegistry> registerBrewingRecipes;
 
     RedstoneTweaksRegistry() {
         analogRedstoneBlock = registerBlock("analog_redstone_block", new AnalogRedstoneBlock());
@@ -107,7 +110,7 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
         redstoneCapacitors = new EnumVariantRegistry.Builder<>(RedstoneCapacitorBlock.Tier.class, "%s_redstone_capacitor")
             .blocks(RedstoneCapacitorBlock::new).blockItems()
             .blockColor(Properties.POWER, ColorUtils::getPowerBrightnessMaskInt)
-            .registerAll(); 
+            .registerAll();
 
         itemGroupRTweaks = FabricItemGroupBuilder.create(ID("main"))
             .icon(() -> new ItemStack(flintAndRedstone))
@@ -150,5 +153,7 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
                 return stack;
             }
         });
+
+        registerBrewingRecipes.accept(this);
     }
 }

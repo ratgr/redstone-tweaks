@@ -2,6 +2,6 @@
   "required": true,
   "package": "com.swordglowsblue.redstonetweaks.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [ "MixinRedstoneWireBlock" ],
+  "mixins": [ "MixinRedstoneWireBlock", "MixinBrewingRecipeRegistry" ],
   "injectors": { "defaultRequire": 1 }
 }
