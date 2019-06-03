@@ -65,11 +65,11 @@ recommended to always run this before starting the game client since it doesn't
 take much time and makes sure all resources are up to date; adding it to your
 run configuration as a pre-run task is a good choice.
 
-DO NOT directly edit resource files in `src/main/resources`, they will be
-overwritten or deleted! Place them at the same subpath in 
-`src/gen_resources/predef` instead, or add code to generate them to the 
-appropriate module in `src/gen_resources`. `gen.js` is the entrypoint and
-generally should only need to be edited when a new module is created. `def.js`
+DO NOT directly edit resource files in `src/main/resources`! With the exception
+of mod metadata files, they will be overwritten or deleted. Place them at the 
+same subpath in  `src/gen_resources/predef` instead, or add code to generate 
+them to the appropriate module in `src/gen_resources`. `gen.js` is the entrypoint 
+and generally should only need to be edited when a new module is created. `def.js`
 is for defining lists and variables to use in generation, such as dye colors.
 All other files directly placed in `src/gen_resources` are modules for
 generation - see those files for examples on how to generate resources, or
