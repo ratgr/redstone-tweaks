@@ -230,7 +230,7 @@ public abstract class AbstractVariantRegistry<T> {
         extends IBuilderAwaitingFinalize<T, B, R> {
         IBuilderAwaitingFinalize<T, B, R> setBlockColorProvider(Function<T, Integer> provider);
         IBuilderAwaitingFinalize<T, B, R> setBlockColorProvider(BiFunction<T, BlockState, Integer> provider);
-        <P extends Comparable<P>> IBuilderAwaitingItemColor<T, B, R> setBlockColorProvider(AbstractProperty<P> property, Function<P, Integer> provider);
+        <P extends Comparable<P>> IBuilderAwaitingFinalize<T, B, R> setBlockColorProvider(AbstractProperty<P> property, Function<P, Integer> provider);
     }
 
     public interface IBuilderAwaitingItemColor<T, B extends Builder<T,B,R>, R extends AbstractVariantRegistry<T>>
