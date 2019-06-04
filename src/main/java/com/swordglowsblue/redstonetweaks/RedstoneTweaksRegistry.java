@@ -95,21 +95,24 @@ public class RedstoneTweaksRegistry implements RegistryUtils {
         redstoneTorchLeverItem = registerItem("redstone_torch_lever",
             new WallStandingBlockItem(redstoneTorchLever, redstoneWallTorchLever, new Item.Settings()));
 
-        dyedWire = new EnumVariantRegistry.Builder<>(DyeColor.class, "%s_redstone_wire", "%s_redstone")
-            .keys(EnumSet.complementOf(EnumSet.of(DyeColor.RED)))
-            .blocks(DyedWireBlock::new).blockItems()
-            .blockColor((color, state) -> ((IWire)state.getBlock()).getWireColor(state).getRGB())
-            .itemColor(ColorUtils::rgbIntFromDye)
+        dyedWire = EnumVariantRegistry.create(DyeColor.class)
+            .setValidKeys(EnumSet.complementOf(EnumSet.of(DyeColor.RED)))
+            .setIdentifierFormat(RedstoneTweaks.MODID, "%s_redstone_wire", "%s_redstone")
+            .addBlocks(DyedWireBlock::new).addBlockItems()
+            .setBlockColorProvider((color, state) -> ((IWire)state.getBlock()).getWireColor(state).getRGB())
+            .setItemColorProvider(ColorUtils::rgbIntFromDye)
             .registerAll();
-        dyedRBlocks = new EnumVariantRegistry.Builder<>(DyeColor.class, "%s_redstone_block")
-            .keys(EnumSet.complementOf(EnumSet.of(DyeColor.RED)))
-            .blocks(DyedRedstoneBlock::new).blockItems()
-            .blockColor(ColorUtils::rgbIntFromDye)
-            .itemColor(ColorUtils::rgbIntFromDye)
+        dyedRBlocks = EnumVariantRegistry.create(DyeColor.class)
+            .setValidKeys(EnumSet.complementOf(EnumSet.of(DyeColor.RED)))
+            .setIdentifierFormat(RedstoneTweaks.MODID, "%s_redstone_block")
+            .addBlocks(DyedRedstoneBlock::new).addBlockItems()
+            .setBlockColorProvider(ColorUtils::rgbIntFromDye)
+            .setItemColorProvider(ColorUtils::rgbIntFromDye)
             .registerAll();
-        redstoneCapacitors = new EnumVariantRegistry.Builder<>(RedstoneCapacitorBlock.Tier.class, "%s_redstone_capacitor")
-            .blocks(RedstoneCapacitorBlock::new).blockItems()
-            .blockColor(Properties.POWER, ColorUtils::getPowerBrightnessMaskInt)
+        redstoneCapacitors = EnumVariantRegistry.create(RedstoneCapacitorBlock.Tier.class)
+            .setIdentifierFormat(RedstoneTweaks.MODID, "%s_redstone_capacitor")
+            .addBlocks(RedstoneCapacitorBlock::new).addBlockItems()
+            .setBlockColorProvider(Properties.POWER, ColorUtils::getPowerBrightnessMaskInt)
             .registerAll();
 
         itemGroupRTweaks = FabricItemGroupBuilder.create(ID("main"))
