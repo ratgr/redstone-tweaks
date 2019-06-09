@@ -12,7 +12,7 @@ group = project.maven_group
 repositories {
     mavenCentral()
     maven { url "https://minecraft.curseforge.com/api/maven/" }
-    maven { url = 'http://maven.sargunv.s3-website-us-west-2.amazonaws.com/' }
+    maven { url 'http://maven.sargunv.s3-website-us-west-2.amazonaws.com/' }
 }
 minecraft {}
 
